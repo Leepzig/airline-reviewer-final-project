@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :reviews
-  resources :airlines
+  resources :airlines, only: [:index, :show]
   # resources :users
 
   post "/signup", to: "users#create"

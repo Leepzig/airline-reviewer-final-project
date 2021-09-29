@@ -1,6 +1,6 @@
 class Airline < ApplicationRecord
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_many :airlines, through: :reviews
 
 

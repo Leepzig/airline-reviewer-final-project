@@ -8,7 +8,6 @@ class AirlinesController < ApplicationController
   def show
     airline = Airline.find_by_id(params[:id])
     if airline
-      # binding.pry
       render json: airline, serializer:AirlineReviewsSerializer
     else
       render json: {error: "airline not found"}
