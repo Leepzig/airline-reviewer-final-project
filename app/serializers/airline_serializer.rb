@@ -1,5 +1,12 @@
 class AirlineSerializer < ActiveModel::Serializer
-  attributes :id, :name, :country, :logo
+  attributes :id, :name, :country, :logo, :average_score, :review_count
 
-  has_many :reviews
+
+  def review_count
+    self.object.reviews.count
+  end
+
+  def average_score
+    self.object.average_score
+  end
 end
