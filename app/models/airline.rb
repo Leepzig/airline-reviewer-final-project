@@ -14,7 +14,7 @@ class Airline < ApplicationRecord
   end
 
   def self.ordered_airlines
-    self.all.sort {|airline1, airline2| airline1.average_score <=> airline2.average_score}
+    self.all.sort {|airline1, airline2| airline2.average_score <=> airline1.average_score}
   end
 
   def review_count
