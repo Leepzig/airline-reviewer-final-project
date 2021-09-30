@@ -2,7 +2,7 @@ class AirlinesController < ApplicationController
 
   
   def index
-    render json: Airline.all
+    render json: Airline.ordered_airlines
   end
 
   def show
