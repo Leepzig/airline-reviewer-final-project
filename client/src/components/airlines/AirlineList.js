@@ -1,26 +1,15 @@
-import React, { useState, useEffect} from 'react'
+import React from 'react'
 import AirlineItem from "./AirlineItem"
 
-const AirlineList = () => {
-  const [airlines, setAirlines] = useState([])
-
-
-  const getAirlines = async () => {
-    const response = await fetch("/airlines")
-    const data = await response.json()
-    setAirlines(data)
-  }
-
-  useEffect(()=> {
-    getAirlines()
-  }, [])
+const AirlineList = ( { airlines }) => {
+  
 
 
 
   return (
-    <div>
+    <ul>
       {airlines.map(airline => <AirlineItem key={airline.id} airline={airline} />)}
-    </div>
+    </ul>
   )
 }
 
