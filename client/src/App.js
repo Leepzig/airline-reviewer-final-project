@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AirlineShowPage from "./components/airlines/AirlineShowPage";
+import ReviewShowEdit from "./components/reviews/ReviewShowEdit";
 import Home from "./components/static/Home";
 import Login from "./components/static/Login";
 import NavBar from "./components/static/NavBar";
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/airlines/:id">
             <AirlineShowPage currentUser={currentUser}/>
+          </Route>
+          <Route exact path="/airlines/:id/review/:review_id">
+            <ReviewShowEdit currentUser={currentUser}/>
           </Route>
           <Route exact path="/airlines/:id">
             <AirlineShowPage currentUser={currentUser}/>

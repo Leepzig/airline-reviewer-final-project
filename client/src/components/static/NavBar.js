@@ -17,7 +17,6 @@ const NavBar = ( { currentUser, setUserToNull }) => {
   return (
 <ul>
   <li><NavLink to="/">Home</NavLink>  </li> 
-  <li><NavLink to="/reviews/new">New Review</NavLink>  </li>
   <li>{currentUser ? <NavLink to="/" onClick={logoutUser}>Logout</NavLink> : <NavLink to="/login">Login</NavLink>}</li>
   {currentUser ? null : <li><NavLink to="/signup">Sign up</NavLink></li>}
 </ul>

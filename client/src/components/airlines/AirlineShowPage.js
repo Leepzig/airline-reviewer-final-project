@@ -26,11 +26,11 @@ const AirlineShowPage = ( { currentUser }) => {
       <h2>{airline.name}</h2>
       <p>airline.</p>
       <p>blah blah</p>
-      <button onClick={() => setAddingReview(true)}>Add a Review</button>
+      {currentUser ? <button onClick={() => setAddingReview(true)}>Add a Review</button> : null}
       {addingReview ? <NewReview airline={airline}  currentUser={currentUser} /> : null }
       <h4>reviews</h4>
       <ul>
-      {airline.reviews.map( review => <ReviewListItem key={review.id} currentUser={currentUser} review={review}/>)}
+      {airline.reviews.map( review => <ReviewListItem key={review.id} currentUser={currentUser} review={review} airline={airline}/>)}
       </ul>
     </div>
   )
