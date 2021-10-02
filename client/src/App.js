@@ -33,6 +33,9 @@ function App() {
           <Route exact path="/airlines/:id">
             <AirlineShowPage currentUser={currentUser}/>
           </Route>
+          <Route exact path="/airlines/:id">
+            <AirlineShowPage currentUser={currentUser}/>
+          </Route>
           <Route exact path="/signup">
             <Signup loginUser={loginUser}/>
           </Route>

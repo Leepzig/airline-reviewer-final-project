@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import NewReview from '../reviews/NewReview'
+import ReviewListItem from '../reviews/ReviewListItem'
 
 const AirlineShowPage = ( { currentUser }) => {
   const [airline, setAirline] = useState("")
@@ -29,7 +30,7 @@ const AirlineShowPage = ( { currentUser }) => {
       {addingReview ? <NewReview airline={airline}  currentUser={currentUser} /> : null }
       <h4>reviews</h4>
       <ul>
-      {airline.reviews.map( review => <li key={review.id}><p>{review.title}</p><p>{review.score} star{review.score > 1? "s" : ""}</p><p>{review.content}</p></li>)}
+      {airline.reviews.map( review => <ReviewListItem key={review.id} currentUser={currentUser} review={review}/>)}
       </ul>
     </div>
   )

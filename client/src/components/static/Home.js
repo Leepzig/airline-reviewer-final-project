@@ -24,7 +24,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Welome To Airline Reviews!</h1>
+      <h1>Welcome To Airline Reviews!</h1>
       <h2>Congratualions to {topAirline.name} for being our best rated airline!</h2>
       <div>
         <AirlineList airlines={airlines}/>
