@@ -4,6 +4,7 @@ import AirlineShowPage from "./components/airlines/AirlineShowPage";
 import Home from "./components/static/Home";
 import Login from "./components/static/Login";
 import NavBar from "./components/static/NavBar";
+import Signup from "./components/static/Signup";
 
 
 
@@ -14,10 +15,14 @@ function App() {
     setCurrentUser(user)
   }
 
+  const setUserToNull = () => {
+    setCurrentUser(null)
+  }
+
   return (
     <div>
       <Router>
-        <NavBar/>
+        <NavBar currentUser={currentUser} setUserToNull={setUserToNull}/>
         <Switch>
           <Route exact path="/">
             <Home />
@@ -26,7 +31,10 @@ function App() {
             <Login loginUser={loginUser} />
           </Route>
           <Route exact path="/airlines/:id">
-            <AirlineShowPage />
+            <AirlineShowPage currentUser={currentUser}/>
+          </Route>
+          <Route exact path="/signup">
+            <Signup loginUser={loginUser}/>
           </Route>
         </Switch>
       </Router>
