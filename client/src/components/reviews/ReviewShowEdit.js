@@ -13,21 +13,20 @@ const ReviewShowEdit = ( ) => {
   })
   const history =  useHistory()
   
-  const getReview = async () => {
-    const response =  await fetch(`/reviews/${review_id}`)
-    const data = await response.json()
-    // debugger
-    setReview(data)
-    setForm({
-    title:data.title,
-    score:data.score,
-    content:data.content
-  })
-  }
 
   useEffect(() => {
+    const getReview = async () => {
+      const response =  await fetch(`/reviews/${review_id}`)
+      const data = await response.json()
+      // debugger
+      setReview(data)
+      setForm({
+      title:data.title,
+      score:data.score,
+      content:data.content
+    })}
     getReview()
-  },[])
+  },[review_id])
 
 
 

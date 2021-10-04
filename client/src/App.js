@@ -29,7 +29,7 @@ function App() {
   }
   useEffect(() => {
     getCurrentUser()
-  }, [])
+  }, [currentUser])
 
   return (
     <div>

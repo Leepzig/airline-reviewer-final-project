@@ -1,5 +1,4 @@
 import React from 'react'
-import AirlineItem from '../airlines/AirlineItem'
 import { useHistory, useParams } from 'react-router-dom'
 
 const ReviewListItem = ( { currentUser, review }) => {
@@ -17,6 +16,8 @@ const ReviewListItem = ( { currentUser, review }) => {
     }
     const response = await fetch(`/reviews/${review.id}`, options)
     const data = await response.json()
+    console.log(data)
+    
   }
 
   return (

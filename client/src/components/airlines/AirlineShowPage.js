@@ -9,16 +9,17 @@ const AirlineShowPage = ( { currentUser }) => {
   const [addingReview, setAddingReview] = useState(false)
   const { id } = useParams()
 
-  const getAirline = async () => {
-    const response = await fetch(`/airlines/${id}`)
-    const data = await response.json()
-    setAirline(data)
-    setLoading(false)
-  }
 
-  useEffect(()=> {
+
+  useEffect(() => {
+    const getAirline = async () => {
+      const response = await fetch(`/airlines/${id}`)
+      const data = await response.json()
+      setAirline(data)
+      setLoading(false)
+    }
     getAirline()
-  }, [])
+  },[id])
 
   if (loading) return <h2>Loading...</h2>
   return (
