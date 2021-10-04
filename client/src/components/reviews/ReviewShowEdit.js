@@ -16,6 +16,7 @@ const ReviewShowEdit = ( ) => {
   const getReview = async () => {
     const response =  await fetch(`/reviews/${review_id}`)
     const data = await response.json()
+    // debugger
     setReview(data)
     setForm({
     title:data.title,
@@ -50,9 +51,10 @@ const ReviewShowEdit = ( ) => {
     console.log(data)
     history.push(`/airlines/${id}`)
   }
-
+  if (!review) return <h2>Loading..</h2>
   return (
     <div>
+      <h2>Edit Review for {review.airline.name}</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="title" value={form.title} onChange={handleChange} placeholder="Title"/><br/>
         <input type="text" name="score" value={form.score} onChange={handleChange} placeholder="Score"/><br/>
