@@ -15,7 +15,7 @@ const ReviewListItem = ( { currentUser, review }) => {
       method:"DELETE",
       headers:{"Content-Type":"application/json"}
     }
-    const response = await fetch(`reviews/${review.id}`)
+    const response = await fetch(`/reviews/${review.id}`, options)
     const data = await response.json()
   }
 

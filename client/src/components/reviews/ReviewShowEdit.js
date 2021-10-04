@@ -3,30 +3,34 @@ import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 const ReviewShowEdit = ( ) => {
+
   const {id, review_id} = useParams()
   const [review, setReview] = useState(null)
-  const [loading, setLoading] = useState()
   const [form, setForm] = useState({
-    title:"",
-    score:"",
-    content:""
+  title:"",
+  score:"",
+  content:""
   })
-  debugger
-
+  const history =  useHistory()
+  
   const getReview = async () => {
     const response =  await fetch(`/reviews/${review_id}`)
     const data = await response.json()
     setReview(data)
-    setLoading(false)
+    setForm({
+    title:data.title,
+    score:data.score,
+    content:data.content
+  })
   }
 
   useEffect(() => {
     getReview()
   },[])
 
-  // debugger
-  const history =  useHistory()
 
+
+//form functions
   const handleChange = e => {
     setForm({
       ...form,
@@ -35,23 +39,17 @@ const ReviewShowEdit = ( ) => {
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
     const options = {
       method:"PATCH",
       headers:{"Content-type":"application/json"},
       body:JSON.stringify({...form})
     }
-    const response = await fetch(`/reviews`, options)
+    const response = await fetch(`/reviews/${review_id}`, options)
     const data = await response.json()
-    //What to do with the data
+    console.log(data)
     history.push(`/airlines/${id}`)
   }
-
-  if (review === null) return <h1>Loading...</h1>
-  setForm({
-    title:review.title,
-    score:review.score,
-    content:review.content
-  })
 
   return (
     <div>

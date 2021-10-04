@@ -1,33 +1,21 @@
-import React, { useState} from 'react'
+import React from 'react'
+import { useHistory } from "react-router-dom"
+import {useForm} from "../hooks/useForm"
 
 const NewReview = ( {airline, currentUser} ) => {
-  const [form, setForm] = useState(
-    {
+  const [form, handleForm, resetForm] = useForm({
       title:"",
       score:1,
       content:"",
       airline_id: airline.id,
       user_id: currentUser.id
-    }
-  )
-
-  const handleChange = e => {
-    setForm({
-      ...form,
-      [e.target.name]:e.target.value
     })
-  }
+  const history = useHistory()
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(form)
     submitForm()
-    setForm({
-      title:"",
-      score:1,
-      content:"",
-    })
-
+    resetForm()
   }
 
   const submitForm = async () => {
@@ -40,16 +28,15 @@ const NewReview = ( {airline, currentUser} ) => {
     const response = await fetch(`/reviews`, options)
     const data = await response.json()
     airline.reviews.push(data)
-    currentUser.reviews.push(data)
-    console.log(data)
+    history.push(`/airlines/${airline.id}/review/${data.id}`)
   }
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="title" value={form.title} onChange={handleChange} placeholder="Title"/><br/>
-        <input type="text" name="score" value={form.score} onChange={handleChange} placeholder="Score"/><br/>
-        <input type="text" name="content" value={form.content} onChange={handleChange} placeholder="Score comments"/><br/>
+        <input type="text" name="title" value={form.title} onChange={handleForm} placeholder="Title"/><br/>
+        <input type="text" name="score" value={form.score} onChange={handleForm} placeholder="Score"/><br/>
+        <input type="text" name="content" value={form.content} onChange={handleForm} placeholder="Score comments"/><br/>
         <input type="submit" placeholder="Submit"/>
       </form>
       
