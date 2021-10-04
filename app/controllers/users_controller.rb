@@ -19,6 +19,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_current_user
+    if logged_in
+      render json: current_user
+    else
+      render json: { errors: ["There is currently no user logged in."] }, status: :bad_request
+    end
+  end
+
   private
     def user_params
       params.permit(:email, :name, :password, :password_confirmation)

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AirlineShowPage from "./components/airlines/AirlineShowPage";
 import ReviewShowEdit from "./components/reviews/ReviewShowEdit";
@@ -19,6 +19,17 @@ function App() {
   const setUserToNull = () => {
     setCurrentUser(null)
   }
+
+  const getCurrentUser = async () => {
+    const response = await fetch(`/current-user`)
+    const data = await response.json()
+    if (data.email) {
+      setCurrentUser(data)
+    }
+  }
+  useEffect(() => {
+    getCurrentUser()
+  }, [])
 
   return (
     <div>

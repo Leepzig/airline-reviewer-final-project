@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # resources :users
 
   post "/signup", to: "users#create"
-  get "/me", to: "users#show"
+  get "/current-user", to: "users#get_current_user"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
